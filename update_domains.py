@@ -69,8 +69,8 @@ def update_json_file():
         print("Errore: Il file config.json non è un JSON valido.")
         return
 
-    streamingcommunity_url = 'https://pastebin.com/raw/KgQ4jTy6'
-    streamingcommunity_domains = get_domains(streamingcommunity_url)
+    streamingunity_url = 'https://pastebin.com/raw/KgQ4jTy6'
+    streamingunity_domains = get_domains(streamingunity_url)
 
     general_pastebin_url = 'https://pastebin.com/raw/E8WAhekV'
     general_domains = get_domains(general_pastebin_url)
@@ -80,7 +80,7 @@ def update_json_file():
         return
 
     site_mapping = {
-        'StreamingCommunity': streamingcommunity_domains[0],
+        'streamingunity': streamingunity_domains[0],
         'Filmpertutti': general_domains[1],
         'Tantifilm': general_domains[2],
         'LordChannel': general_domains[3],
