@@ -313,7 +313,7 @@ async def addon_stream(request: Request,config, type, id,):
                         print(f"Mysterius Found Results for {id}")
                         for resolution, link in results.items():
                             streams['streams'].append({'title': f'{Icon}Mysterious {resolution}', 'url': link, 'behaviorHints': {'bingeGroup': f'mysterius{resolution}'}})
-                if provider_maps['STREAMING_UNITY'] == "1" and SC == "1":
+                if provider_maps['STREAMINGUNITY'] == "1" and SC == "1":
                     SC_FAST_SEARCH = provider_maps['SC_FAST_SEARCH']
                     url_streaming_unity,quality_sc, slug_sc = await streaming_unity(id,client,SC_FAST_SEARCH,MFP)
                     if url_streaming_unity is not None:
