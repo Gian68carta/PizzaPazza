@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException,Request
 from fastapi.responses import JSONResponse,RedirectResponse,HTMLResponse
 from Src.API.filmpertutti import filmpertutti
-from  Src.API.streamingcommunity import streaming_community
+from  Src.API.streamingunity import streaming_unity
 from  Src.API.tantifilm import tantifilm
 from  Src.API.lordchannel import lordchannel
 from  Src.API.streamingwatch import streamingwatch
@@ -313,20 +313,20 @@ async def addon_stream(request: Request,config, type, id,):
                         print(f"Mysterius Found Results for {id}")
                         for resolution, link in results.items():
                             streams['streams'].append({'title': f'{Icon}Mysterious {resolution}', 'url': link, 'behaviorHints': {'bingeGroup': f'mysterius{resolution}'}})
-                if provider_maps['STREAMINGCOMMUNITY'] == "1" and SC == "1":
+                if provider_maps['STREAMING_UNITY'] == "1" and SC == "1":
                     SC_FAST_SEARCH = provider_maps['SC_FAST_SEARCH']
-                    url_streaming_community,quality_sc, slug_sc = await streaming_community(id,client,SC_FAST_SEARCH,MFP)
-                    if url_streaming_community is not None:
-                        print(f"StreamingCommunity Found Results for {id}")
-                        if MFP == "1" and "iframe" in url_streaming_community:
-                            url_streaming_community = f'{MFP_url}/extractor/video?api_password={MFP_password}&d={url_streaming_community}&host=VixCloud&redirect_stream=false'
-                            url_streaming_community = await transform_mfp(url_streaming_community,client)
+                    url_streaming_unity,quality_sc, slug_sc = await streaming_unity(id,client,SC_FAST_SEARCH,MFP)
+                    if url_streaming_unity is not None:
+                        print(f"Streamingunity Found Results for {id}")
+                        if MFP == "1" and "iframe" in url_streaming_unity:
+                            url_streaming_unity = f'{MFP_url}/extractor/video?api_password={MFP_password}&d={url_streaming_unity}&host=VixCloud&redirect_stream=false'
+                            url_streaming_unity = await transform_mfp(url_streaming_unity,client)
                             if "hf.space" in MFP_url:
-                                streams['streams'].append({"name":f'{Name}', 'title': f'{Icon}StreamingCommunity\n Sorry StreamingCommunity wont work with MFP hosted on HuggingFace','url': url_streaming_community})
+                                streams['streams'].append({"name":f'{Name}', 'title': f'{Icon}StreamingCommunity\n Sorry Streamingunity wont work with MFP hosted on HuggingFace','url': url_streaming_unity})
 
-                            streams['streams'].append({"name":f'{Name}\n{quality_sc} Max', 'title': f'{Icon}StreamingCommunity\n {slug_sc.replace("-"," ").capitalize()}','url': url_streaming_community,'behaviorHints':{'notWebReady': False, 'bingeGroup': f'streamingcommunity{quality_sc}'}})
+                            streams['streams'].append({"name":f'{Name}\n{quality_sc} Max', 'title': f'{Icon}Streamingunity\n {slug_sc.replace("-"," ").capitalize()}','url': url_streaming_unity,'behaviorHints':{'notWebReady': False, 'bingeGroup': f'streamingcommunity{quality_sc}'}})
                         else:
-                            streams['streams'].append({"name":f'{Name}\n{quality_sc}p Max', 'title': f'{Icon}StreamingCommunity\n {slug_sc.replace("-"," ").capitalize()}\n This will work only on a local instance','url': url_streaming_community,'behaviorHints': {'proxyHeaders': {"request": {"user-agent": User_Agent}}, 'notWebReady': True, 'bingeGroup': f'streamingcommunity{quality_sc}'}})
+                            streams['streams'].append({"name":f'{Name}\n{quality_sc}p Max', 'title': f'{Icon}Streamingunity\n {slug_sc.replace("-"," ").capitalize()}\n This will work only on a local instance','url': url_streaming_community,'behaviorHints': {'proxyHeaders': {"request": {"user-agent": User_Agent}}, 'notWebReady': True, 'bingeGroup': f'streamingcommunity{quality_sc}'}})
                 
                 if provider_maps['LORDCHANNEL'] == "1" and LC == "1":
                     url_lordchannel,quality_lordchannel = await lordchannel(id,client)
